@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314155043) do
+ActiveRecord::Schema.define(version: 20180314170404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20180314155043) do
     t.bigint "harbour_id"
     t.bigint "type_id"
     t.date "date"
-    t.string "tot_imp_exp"
     t.string "terminal"
     t.string "pol_pod"
     t.string "volume"
@@ -45,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180314155043) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tot_imp_exp"
   end
 
   create_table "users", force: :cascade do |t|
