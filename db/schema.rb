@@ -10,10 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314100945) do
+ActiveRecord::Schema.define(version: 20180314155043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "harbours", force: :cascade do |t|
+    t.string "country"
+    t.string "name"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "movements", force: :cascade do |t|
+    t.bigint "harbour_id"
+    t.bigint "type_id"
+    t.date "date"
+    t.string "tot_imp_exp"
+    t.string "terminal"
+    t.string "pol_pod"
+    t.string "volume"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["harbour_id"], name: "index_movements_on_harbour_id"
+    t.index ["type_id"], name: "index_movements_on_type_id"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,4 +70,6 @@ ActiveRecord::Schema.define(version: 20180314100945) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "movements", "harbours"
+  add_foreign_key "movements", "types"
 end
