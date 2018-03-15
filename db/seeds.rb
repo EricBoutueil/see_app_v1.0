@@ -8,9 +8,9 @@
 
 puts "Starting seed for DEV ENV"
 
+Movement.destroy_all
 Harbour.destroy_all
 Type.destroy_all
-Movement.destroy_all
 User.destroy_all
 puts "DB cleaned"
 
