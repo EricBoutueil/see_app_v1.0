@@ -14,10 +14,20 @@
   font-size: 14px;
 }
 
+.text-blue {
+  color: $blue;
+}
+
+.text-dark-blue{
+  color: $dark-blue;
+}
+
 h1 {
   @extend .text-size-title;
+  @extend .text-blue;
 }
 
 body {
   @extend .text-size-body;
+  @extend .text-dark-blue;
 }
