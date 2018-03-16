@@ -28,7 +28,7 @@ fr:
         current_password: Mot de passe actuel
         data: Données
         display_name: Nom public
-        email: Adresse courriel
+        email: Email
         expires_in: Expire après
         filtered_languages: Langues filtrées
         header: Image d’en-tête
