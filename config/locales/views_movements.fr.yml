@@ -1,0 +1,13 @@
+fr:
+  movements:
+    index:
+      movement: Trafic
+
+      harbour: Port
+      code: Famille
+      tot_imp_exp: Flux
+      type_name: Libellé
+      terminal: Terminal
+      pol_pod: POL / POD
+      date: Année
+      volume: Volume

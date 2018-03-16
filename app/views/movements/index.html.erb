@@ -1,25 +1,31 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <td>Port</td>
-      <td>Type</td>
-      <td>Flux</td>
-      <td>Libellé</td>
-      <td>Terminal</td>
-      <td>Pol / Pod</td>
-      <td>Année</td>
-      <td>Volume</td>
+      <td><%= t('.harbour') %></td>
+      <td><%= t('.code') %></td>
+      <td><%= t('.tot_imp_exp') %></td>
+      <td><%= t('.type_name') %></td>
+      <td><%= t('.terminal') %></td>
+      <td><%= t('.pol_pod') %></td>
+      <td><%= t('.date') %></td>
+      <td><%= t('.volume') %></td>
     </tr>
   </thead>
   <tbody>
     <% @movements.each do |movement| %>
     <tr>
-      <td><%= movement.harbour.name %></td>
-      <td><%= movement.type.code %></td>
-      <td><%= movement.type.tot_imp_exp %></td>
-      <td><%= movement.type.name %></td>
-      <td><%= movement.terminal %></td>
-      <td><%= movement.pol_pod %></td>
+      <td><%= movement.harbour.name.capitalize %></td>
+      <td><%= movement.type.code.upcase %></td>
+      <!-- <td><%= movement.type.tot_imp_exp %></td> -->
+      <td>
+        <%= t("ar.attributes.type.tot_imp_exp.#{movement.type.tot_imp_exp}") %>
+      </td>
+      <!-- <td><%= movement.type.name %></td> -->
+      <td>
+        <%= t("types.type_name.#{movement.type.name}") %>
+      </td>
+      <td><%= movement.terminal.capitalize %></td>
+      <td><%= movement.pol_pod.capitalize %></td>
       <td><%= movement.date.strftime("%Y") %></td>
       <td><%= movement.volume %></td>
     </tr>

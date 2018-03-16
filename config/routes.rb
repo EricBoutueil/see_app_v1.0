@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'movements#index'
 
-  resources :movements, only:[:index]
+  scope '(:locale)', locale: /en|es/ do
+    root to: 'movements#index'
+    resources :movements, only:[:index]
+  end
 
 end
