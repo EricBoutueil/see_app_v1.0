@@ -1,4 +1,8 @@
-<p><%= t('.greeting', recipient: @email) %></p>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+    <p><%= t('.greeting', recipient: @email) %></p>
 
-<p><%= t('.instruction') %></p>
-<p><%= link_to t('.action'), confirmation_url(@resource, confirmation_token: @token) %></p>
+    <p><%= t('.instruction') %></p>
+    <p><%= link_to t('.action'), confirmation_url(@resource, confirmation_token: @token) %></p>
+  </div>
+</div>
