@@ -20,6 +20,7 @@ ActiveAdmin.register Movement do
     column :id
     column :harbour
     column :type
+    column :type_identification
     column :date
     column :volume
     column :terminal

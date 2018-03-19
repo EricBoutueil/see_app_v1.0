@@ -6,4 +6,8 @@ class Movement < ApplicationRecord
     message: "already exists for harbour and flow" }
   validates :volume, presence: true, numericality: true
 
+  def type_identification
+    "#{self.type.code} #{self.type.tot_imp_exp}"
+  end
+
 end
