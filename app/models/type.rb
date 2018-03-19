@@ -7,7 +7,7 @@ class Type < ApplicationRecord
     message: "already exists for this flow" }
   validates :tot_imp_exp, presence: true
 
-  def name
+  def type_identification
     "#{code} #{tot_imp_exp}"
   end
 end
