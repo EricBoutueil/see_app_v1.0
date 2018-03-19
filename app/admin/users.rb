@@ -14,4 +14,16 @@ ActiveAdmin.register User do
 
   # permit_params :email, :first_name, :last_name, :company_name
 
+  index do
+    selectable_column
+    column :id
+    column :email
+    column :name
+    column :created_at
+    column :last_sign_in_at
+    column :sign_in_count
+    column :admin
+    actions
+  end
+
 end
