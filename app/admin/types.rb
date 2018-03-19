@@ -1,4 +1,7 @@
 ActiveAdmin.register Type do
+
+  actions :all, except: [:new, :destroy]
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -13,13 +16,13 @@ ActiveAdmin.register Type do
 # end
 
   index do
-    # selectable_column
+    selectable_column
     column :id
     column :code
     column :tot_imp_exp
     column :name
     column :description
-    # actions
+    actions
   end
 
 end
