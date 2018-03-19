@@ -14,4 +14,15 @@ ActiveAdmin.register Harbour do
 
 permit_params :country, :name, :address
 
+  index do
+    selectable_column
+    column :id
+    column :country
+    column :name
+    column :address
+    column :latitude
+    column :longitude
+    actions
+  end
+
 end

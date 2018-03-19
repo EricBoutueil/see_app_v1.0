@@ -15,4 +15,16 @@ ActiveAdmin.register Movement do
 
   permit_params :harbour_id, :type_id, :date, :volume, :terminal, :pol_pod
 
+  index do
+    selectable_column
+    column :id
+    column :harbour
+    column :type
+    column :date
+    column :volume
+    column :terminal
+    column :pol_pod
+    actions
+  end
+
 end

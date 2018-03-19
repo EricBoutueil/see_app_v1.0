@@ -40,6 +40,8 @@ fr:
       default: "%d/%m/%Y"
       short: "%e %b"
       long: "%e %B %Y"
+      custom_short: "%d %B"
+      custom_long: "%d %B %Y"
     month_names:
     -
     - janvier
