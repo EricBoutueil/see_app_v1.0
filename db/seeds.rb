@@ -14,6 +14,14 @@ Type.destroy_all
 # User.destroy_all
 puts "DB cleaned"
 
+if User.first.nil?
+  User.create!(
+    email: "user@example.com",
+    password: "password"
+    )
+  puts "Added user@example.com"
+end
+
 # Harbour
 
 puts "Creating harbours seeds"
