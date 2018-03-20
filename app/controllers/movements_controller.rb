@@ -9,5 +9,4 @@ class MovementsController < ApplicationController
       @movements = @movements.where(type: params[:type])
     end
   end
-
 end
