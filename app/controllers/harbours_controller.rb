@@ -6,7 +6,7 @@ class HarboursController < ApplicationController
       {
         lat: harbour.latitude,
         lng: harbour.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/harbours/map_box", locals: { flat: flat }) }
+        # infoWindow: { content: render_to_string(partial: "/harbours/map_box", locals: { harbour: harbour }) }
       }
     end
   end
