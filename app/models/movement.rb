@@ -9,5 +9,4 @@ class Movement < ApplicationRecord
   def type_identification
     "#{self.type.code} #{self.type.tot_imp_exp}"
   end
-
 end

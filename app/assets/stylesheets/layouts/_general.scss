@@ -31,3 +31,7 @@ body {
   @extend .text-size-body;
   @extend .text-dark-blue;
 }
+
+.content {
+  display: flex;
+}
