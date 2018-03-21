@@ -2,6 +2,7 @@ class HarboursController < ApplicationController
   def index
     @harbours = Harbour.where.not(latitude: nil, longitude: nil)
 
+    # binding.pry
     @features = @harbours.map do |harbour|
       {
         "type": "Feature", #1 feature ~ 1 harbour where (movements.filter).sum
@@ -14,7 +15,7 @@ class HarboursController < ApplicationController
       }
     end
 
-    @GeoJSON =
+    @geojson =
       {
         "type": "FeatureCollection",
         "features": @features

@@ -2,7 +2,7 @@
 <div id="map"></div> #harbours index
 
 # STEP 0
-function initMap() { # not needed with gmap
+function initMap() { # apparently not needed with gmap ?
 #STEP 1
 map = new google.maps.Map(document.getElementById('map'), {... #map.js
 #STEP 2
