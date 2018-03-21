@@ -5,7 +5,9 @@ class HarboursController < ApplicationController
     @markers = @harbours.map do |harbour|
       {
         lat: harbour.latitude,
-        lng: harbour.longitude#,
+        lng: harbour.longitude,
+        title: harbour.name,
+        vol: 100#,
         # infoWindow: { content: render_to_string(partial: "/harbours/map_box", locals: { harbour: harbour }) }
       }
     end
