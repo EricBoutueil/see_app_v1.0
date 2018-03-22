@@ -49,8 +49,8 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="types" row="id" />
 </row>
-<row name="date" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<row name="year" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="terminal (?)" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -75,7 +75,7 @@
 <row name="flow" null="1" autoincrement="0">
 <datatype>ENUM</datatype>
 <default>NULL</default></row>
-<row name="name" null="1" autoincrement="0">
+<row name="label" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="description" null="1" autoincrement="0">

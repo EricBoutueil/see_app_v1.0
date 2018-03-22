@@ -18,7 +18,7 @@ fr:
         last_name: Nom
         company_name: Entité
       movement:
-        date: Année
+        year: Année
         terminal: Terminal
         pol_pod: POL / POD
         volume: Volume

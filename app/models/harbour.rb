@@ -12,8 +12,8 @@ class Harbour < ApplicationRecord
     "#{address}, #{country}"
   end
 
-  # def sum_tot_vol_by_type
-  #   harbour.where(movements.group(:type).pluck(:volume).sum
+  # def sum_tot_vol_by_type(code, flow)
+  #   self.movements.group(:code (&?) :flow).where(code: code, flow: flow).pluck(:volume).sum
   # end
 end
 
