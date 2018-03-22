@@ -19,14 +19,15 @@
       <%= yield %>
         </div>
       </div>
-    <!-- js dans assets -->
+    <!-- js in app/assets -->
     <%= javascript_include_tag 'application' %>
-    <!-- js dans js / packs = webpack -->
+    <!-- js in js/packs == webpack -->
     <%= javascript_pack_tag 'application' %>
 
-    <!-- charge library google api js donc before map-->
+    <!-- charging google js api library - needed before map-->
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyCEoBsWsglTRWYE3LuBRJL_Yn6jA3jXG90" %>
-    <!-- execute toutes les initMap -->
+    <!-- note: "&callback=initMap" would have called initMap after library charged -->
+    <!-- execute map.js -->
     <%= javascript_pack_tag 'map' %>
 
   </body>

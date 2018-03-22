@@ -16,8 +16,10 @@ function getCircle(totalvolume) {
 
 var map;
 
-console.log("starting map building");
-// va chercher un element dans le DOM, donc faut un DOM chargé, prendre le bon element
+// would be needed if calling initMap various times --> would need to call "initMap()"
+// function initMap() {...}
+
+// look for the correct element 'map' in the DOM, so need DOM charged
 var mapElement = document.getElementById('map');
 
 if (mapElement) {
@@ -40,8 +42,4 @@ if (mapElement) {
   });
 
 }
-else { console.log("there is no mapElement")};
-
-
-
-// event listener sur map created ??
+// else { console.log("there is no mapElement")};
