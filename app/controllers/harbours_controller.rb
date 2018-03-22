@@ -6,7 +6,9 @@ class HarboursController < ApplicationController
     @features = @harbours.map do |harbour|
       {
         "type": "Feature", #1 feature ~ 1 harbour where (movements.filter).sum
-        "properties": {},
+        "properties": {
+          "totvol": 12345 # total sum to calculate
+        },
         "geometry": {
           "type": "Point",
           "coordinates": [harbour.longitude, harbour.latitude]

@@ -11,4 +11,13 @@ class Harbour < ApplicationRecord
   def full_address
     "#{address}, #{country}"
   end
+
+  # def sum_tot_vol_by_type
+  #   harbour.where(movements.group(:type).pluck(:volume).sum
+  # end
 end
+
+
+# NOTES:
+
+# .pluck = .map in pur SQL
