@@ -34,7 +34,7 @@ class HarboursController < ApplicationController
       {
         "type": "Feature", #1 feature ~ 1 harbour where (movements.filter).sum
         "properties": {
-          "totvol": harbour.movements.where(flow: flow, code: code) # total sum to calculate
+          "totvol": 123123 # harbour.movements.where(flow: flow, code: code) # total sum to calculate
         },
         "geometry": {
           "type": "Point",
