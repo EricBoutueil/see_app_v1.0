@@ -19,9 +19,16 @@
       <%= yield %>
         </div>
       </div>
+    <!-- js dans assets -->
     <%= javascript_include_tag 'application' %>
+    <!-- js dans js / packs = webpack -->
     <%= javascript_pack_tag 'application' %>
-    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
-    <%= javascript_pack_tag "map" %>
+
+    <!-- charge library google api js donc before map-->
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyCEoBsWsglTRWYE3LuBRJL_Yn6jA3jXG90" %>
+    <!-- execute toutes les initMap -->
+    <%= javascript_pack_tag 'map' %>
+
   </body>
 </html>
+
