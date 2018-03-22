@@ -2,12 +2,24 @@ class HarboursController < ApplicationController
   def index
     @harbours = Harbour.where.not(latitude: nil, longitude: nil)
 
-    @markers = @harbours.map do |harbour|
+    # binding.pry
+    @features = @harbours.map do |harbour|
       {
-        lat: harbour.latitude,
-        lng: harbour.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/harbours/map_box", locals: { harbour: harbour }) }
+        "type": "Feature", #1 feature ~ 1 harbour where (movements.filter).sum
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [harbour.longitude, harbour.latitude]
+        }#,
+        #"id": "usc000csx3"
       }
     end
+
+    @geojson =
+      {
+        "type": "FeatureCollection",
+        "features": @features
+      }
+
   end
 end
