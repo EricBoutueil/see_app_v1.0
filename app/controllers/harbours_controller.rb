@@ -2,13 +2,31 @@ class HarboursController < ApplicationController
   def index
     @harbours = Harbour.where.not(latitude: nil, longitude: nil)
 
-    if (params[:harbour])
-      @harbours = @harbours.where(name: params[:harbour])
+    if (params[:name])
+      @harbours = @harbours.where(name: params[:name])
     end
-    if (params[:type])
+
+
+    if (params[:date])
       @harbours.map do |harbour|
-        harbour.movements = habour.movements.group(:type).(where(type: params[:type])
+        flow = harbour.movements.where(flow: params[:flow])
       end
+    else
+      flow = "tot"
+    end
+    if (params[:flow])
+      @harbours.map do |harbour|
+        flow = harbour.movements.where(flow: params[:flow])
+      end
+    else
+      flow = "tot"
+    end
+    if (params[:code])
+      @harbours.map do |harbour|
+        code = harbours.movements.where(code: params[:code])
+      end
+    else
+      code = "z"
     end
 
     # binding.pry
@@ -16,7 +34,7 @@ class HarboursController < ApplicationController
       {
         "type": "Feature", #1 feature ~ 1 harbour where (movements.filter).sum
         "properties": {
-          "totvol": harbour.movements.where(code: params[:code], flux: params[:flux]) # total sum to calculate
+          "totvol": harbour.movements.where(flow: flow, code: code) # total sum to calculate
         },
         "geometry": {
           "type": "Point",
