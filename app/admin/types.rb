@@ -19,8 +19,8 @@ ActiveAdmin.register Type do
     selectable_column
     column :id
     column :code
-    column :tot_imp_exp
-    column :name
+    column :flow
+    column :label
     column :description
     actions
   end

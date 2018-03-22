@@ -30,8 +30,8 @@ fr:
         code: Famille
         name: Libellé
         description: Description
-        tot_imp_exp: Flux
-        tot_imp_exp:
+        flow: Flux
+        flow:
           tot: Total
           imp: Importation
           exp: Exportation

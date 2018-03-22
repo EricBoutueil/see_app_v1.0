@@ -1,13 +1,13 @@
 class Type < ApplicationRecord
   has_many :movements, dependent: :nullify # custom TBD for archive
 
-  enum tot_imp_exp: [:tot, :imp, :exp]
+  enum flow: [:tot, :imp, :exp]
 
-  validates :code, presence: true, uniqueness: { scope: :tot_imp_exp,
+  validates :code, presence: true, uniqueness: { scope: :flow,
     message: "already exists for this flow" }
-  validates :tot_imp_exp, presence: true
+  validates :flow, presence: true
 
   def type_identification
-    "#{code} #{tot_imp_exp}"
+    "#{code} #{flow}"
   end
 end

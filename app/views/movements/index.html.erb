@@ -4,8 +4,8 @@
         <tr>
           <td><%= t('.harbour') %></td>
           <td><%= t('.code') %></td>
-          <td><%= t('.tot_imp_exp') %></td>
-          <td><%= t('.type_name') %></td>
+          <td><%= t('.flow') %></td>
+          <td><%= t('.label') %></td>
           <td><%= t('.terminal') %></td>
           <td><%= t('.pol_pod') %></td>
           <td><%= t('.date') %></td>
@@ -17,13 +17,13 @@
         <tr>
           <td><%= movement.harbour.name.capitalize %></td>
           <td><%= movement.type.code.upcase %></td>
-          <!-- <td><%= movement.type.tot_imp_exp %></td> -->
+          <!-- <td><%= movement.type.flow %></td> -->
           <td>
-            <%= t("ar.attributes.type.tot_imp_exp.#{movement.type.tot_imp_exp}") %>
+            <%= t("ar.attributes.type.flow.#{movement.type.flow}") %>
           </td>
-          <!-- <td><%= movement.type.name %></td> -->
+          <!--<td><%= movement.type.label %></td> -->
           <td>
-            <%= t("types.type_name.#{movement.type.name}") %>
+            <%= t("types.label.#{movement.type.label}") %>
           </td>
           <td><%= movement.terminal.capitalize %></td>
           <td><%= movement.pol_pod.capitalize %></td>
