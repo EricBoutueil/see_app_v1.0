@@ -72,7 +72,7 @@
 <row name="code (A, A1...)" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="tot_imp_exp" null="1" autoincrement="0">
+<row name="flow" null="1" autoincrement="0">
 <datatype>ENUM</datatype>
 <default>NULL</default></row>
 <row name="name" null="1" autoincrement="0">

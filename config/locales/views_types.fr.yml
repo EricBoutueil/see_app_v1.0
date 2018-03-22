@@ -1,6 +1,6 @@
 fr:
   types:
-    type_name: Libellé
-    type_name:
+    label: Libellé
+    label:
       # boats: navires (nb)
       # ...
