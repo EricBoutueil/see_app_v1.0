@@ -1,10 +1,24 @@
 <div class="row">
-    <div
-      id="map"
-      style="width: 100%;
-      height: 600px;"
-      data-geojson="<%= @geojson.to_json %>"
-    ></div>
+
+  <form action="/" method="get">
+    <label for="name"> Port: </label>
+    <select name="name" id="name">
+      <% Harbour.all.each do |f| %>
+        <option value="" selected disabled hidden>Choisir le port</option>
+        <option value="<%=f.name%>"> <%=f.name.capitalize%>
+        </option>
+      <% end %>
+    </select>
+    <input type="submit">
+  </form>
+
+  <div
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-geojson="<%= @geojson.to_json %>"
+  ></div>
+
 </div>
 
 <!-- could do that but would not be sure that library is charged => need call back -->
