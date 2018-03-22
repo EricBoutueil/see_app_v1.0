@@ -7,6 +7,6 @@ class Movement < ApplicationRecord
   validates :volume, presence: true, numericality: true
 
   def type_identification
-    "#{self.type.code} #{self.type.tot_imp_exp}"
+    "#{self.type.code} #{self.type.flow}"
   end
 end

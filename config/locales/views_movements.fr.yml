@@ -5,8 +5,8 @@ fr:
 
       harbour: Port
       code: Famille
-      tot_imp_exp: Flux
-      type_name: Libellé
+      flow: Flux
+      label: Libellé
       terminal: Terminal
       pol_pod: POL / POD
       date: Année
