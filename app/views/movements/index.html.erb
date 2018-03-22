@@ -8,7 +8,7 @@
           <td><%= t('.label') %></td>
           <td><%= t('.terminal') %></td>
           <td><%= t('.pol_pod') %></td>
-          <td><%= t('.date') %></td>
+          <td><%= t('.year') %></td>
           <td><%= t('.volume') %></td>
         </tr>
       </thead>
@@ -27,7 +27,7 @@
           </td>
           <td><%= movement.terminal.capitalize %></td>
           <td><%= movement.pol_pod.capitalize %></td>
-          <td><%= movement.date.strftime("%Y") %></td>
+          <td><%= movement.year %></td>
           <td><%= movement.volume %></td>
         </tr>
       </tbody>

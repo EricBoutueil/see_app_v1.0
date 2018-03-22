@@ -13,7 +13,7 @@ ActiveAdmin.register Movement do
 # end
 
 
-  permit_params :harbour_id, :type_id, :date, :volume, :terminal, :pol_pod
+  permit_params :harbour_id, :type_id, :year, :volume, :terminal, :pol_pod
 
   index do
     selectable_column
@@ -21,7 +21,7 @@ ActiveAdmin.register Movement do
     column :harbour
     column :type
     column :type_identification
-    column :date
+    column :year
     column :volume
     column :terminal
     column :pol_pod
