@@ -13,7 +13,7 @@ class Harbour < ApplicationRecord
   end
 
   # def sum_tot_vol_by_type
-  #   harbour.where(movements.group(:type).pluck(:volume).sum
+  #   self.where(movements.group(:type).pluck(:volume).sum
   # end
 end
 

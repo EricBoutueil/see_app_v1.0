@@ -2,6 +2,15 @@ class HarboursController < ApplicationController
   def index
     @harbours = Harbour.where.not(latitude: nil, longitude: nil)
 
+    if (params[:harbour])
+      @harbours = @harbours.where(name: params[:harbour])
+    end
+    if (params[:flux])
+      @harbours.map do |harbour|
+        harbour.movements = habour.movements.group(:type).(where(type: params[:type])
+      end
+    end
+
     # binding.pry
     @features = @harbours.map do |harbour|
       {
