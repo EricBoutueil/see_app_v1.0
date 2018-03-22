@@ -5,7 +5,7 @@ class HarboursController < ApplicationController
     if (params[:harbour])
       @harbours = @harbours.where(name: params[:harbour])
     end
-    if (params[:flux])
+    if (params[:type])
       @harbours.map do |harbour|
         harbour.movements = habour.movements.group(:type).(where(type: params[:type])
       end
@@ -16,7 +16,7 @@ class HarboursController < ApplicationController
       {
         "type": "Feature", #1 feature ~ 1 harbour where (movements.filter).sum
         "properties": {
-          "totvol": 12345 # total sum to calculate
+          "totvol": harbour.movements.where(code: params[:code], flux: params[:flux]) # total sum to calculate
         },
         "geometry": {
           "type": "Point",

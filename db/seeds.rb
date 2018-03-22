@@ -81,6 +81,9 @@ dexp = Type.create!( code: "d", tot_imp_exp: "exp", name: "passagers" )
 dimp = Type.create!( code: "d", tot_imp_exp: "imp", name: "plein (EVP)" )
 eexp = Type.create!( code: "e", tot_imp_exp: "exp", name: "navires (nb)" )
 eimp = Type.create!( code: "e", tot_imp_exp: "imp", name: "pax croisieres escale" )
+ztot = Type.create!( code: "z", tot_imp_exp: "tot", name: "total port (tonnage brut)" )
+zimp = Type.create!( code: "z", tot_imp_exp: "imp", name: "total port (tonnage brut)" )
+zexp = Type.create!( code: "z", tot_imp_exp: "exp", name: "total port (tonnage brut)" )
 
 puts "done types seeds"
 
@@ -160,4 +163,9 @@ Movement.create!( harbour: bayonne, type: aimp, date: Date.new(2014,12,31), term
 Movement.create!( harbour: bayonne, type: aexp, date: Date.new(2014,12,31), terminal: "terminal 1", pol_pod: "marseille", volume: 90117)
 Movement.create!( harbour: bayonne, type: a1imp, date: Date.new(2014,12,31), terminal: "terminal 1", pol_pod: "marseille", volume: 24535)
 Movement.create!( harbour: bayonne, type: eimp, date: Date.new(2014,12,31), terminal: "terminal 2", pol_pod: "marseille", volume: 40)
+Movement.create!( harbour: ajaccio, type: ztot, date: Date.new(2014,12,31), terminal: "", pol_pod: "", volume: 111111)
+Movement.create!( harbour: bastia, type: ztot, date: Date.new(2014,12,31), terminal: "", pol_pod: "", volume: 222222)
+Movement.create!( harbour: bayonne, type: ztot, date: Date.new(2014,12,31), terminal: "", pol_pod: "", volume: 333333)
+
+
 puts "done MINI movements seeds"
