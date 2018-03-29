@@ -14,4 +14,4 @@ import 'select2/dist/css/select2.css';
 
 
 // call AJAX == fetch
-Fetch(url)
+// Fetch(url)
