@@ -1,6 +1,10 @@
 class HarboursController < ApplicationController
+
+  skip_before_action :authenticate_user!, only: [:index]
+
+
   def index
-    @harbours = Harbour.where.not(latitude: nil, longitude: nil)
+    @harbours = policy_scope(Harbour)
 
     if (params[:name])
       @harbours = @harbours.where(name: params[:name])
