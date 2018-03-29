@@ -1,16 +1,23 @@
 <div class="row">
 
-  <form action="/" method="get">
+<!--   <form action="/" method="get">
     <label for="name"> Port: </label>
     <select name="name" id="name">
-      <% Harbour.all.each do |f| %>
+      <#% Harbour.all.each do |f| %>
         <option value="" selected disabled hidden>Choisir le port</option>
-        <option value="<%=f.name%>"> <%=f.name.capitalize%>
+        <option value="<%#=f.name%>"> <%#=f.name.capitalize%>
         </option>
-      <% end %>
+      <%# end %>
     </select>
     <input type="submit">
-  </form>
+  </form> -->
+
+  <p>Filtre par port:</p>
+  <select id="select2_harbours", multiple=true, style="width: 500px">
+    <% @harbours.map do |h| %>
+      <option value="<%= h.name %>"><%= h.name %></option>
+    <% end %>
+  </select>
 
   <div
     id="map"
@@ -20,11 +27,3 @@
   ></div>
 
 </div>
-
-<!-- could do that but would not be sure that library is charged => need call back -->
-<!-- <script>initMap();</script> -->
-
-<!-- from google map api tutorial -->
-<!-- <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4UokUNm9gH9YCoz-x-Q4Iu__zSUQuAlY&callback=initMap">
-</script> -->
