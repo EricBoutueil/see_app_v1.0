@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'select2';
 
 // select2 field only
-// $ = document.querySelectorAll(class = select2) for jquery plugin, and call select2 on it
+// $ = document.querySelectorAll(...) for jquery plugin, and call select2 on it
 $('#select2_harbours').select2({
     placeholder: "Ecrivez ou sélectionnez pour filtrer",
     allowClear: true
@@ -14,6 +14,9 @@ import 'select2/dist/css/select2.css';
 
 
 // event listener
+$('#select2_harbours').on("select2:select", (event) => {
+  var harbourSelected = event.params.data.text;
+  console.log(harbourSelected); // --> bayonne
 
 // call AJAX == fetch
 // fetch('http://localhost:3000/api/v1/restaurants/1').then((response) => {
@@ -26,3 +29,5 @@ import 'select2/dist/css/select2.css';
 //       // });
 //   });
 // });
+
+});
