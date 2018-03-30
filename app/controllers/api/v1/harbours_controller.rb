@@ -7,9 +7,8 @@ class Api::V1::HarboursController < Api::V1::BaseController
       # @harbours = @harbours.where(name: params[:name]) #simple filter
       @selected_harbours << @harbours.where(name: params[:name]).first #select2
     end
-  end
-
     # if deleted-name
+  end
 
 # private
 
