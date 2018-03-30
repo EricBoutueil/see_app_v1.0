@@ -13,5 +13,16 @@ $('#select2_harbours').select2({
 import 'select2/dist/css/select2.css';
 
 
+// event listener
+
 // call AJAX == fetch
-// Fetch(url)
+// fetch('http://localhost:3000/api/v1/restaurants/1').then((response) => {
+//   .then(response => response.json()) // lit le json pour être bien interprété par js
+//   .then((data) => { // début du call back pour faire mon traitement
+//       console.log(data);
+//       // data.results.forEach((person) => {
+//       //   const item = `<li>${person.name}</li>`;
+//       //   people.insertAdjacentHTML("beforeend", item);
+//       // });
+//   });
+// });

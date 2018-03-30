@@ -1,5 +1,32 @@
 // function definitions
 
+function initMap() {
+  var map;
+  // look for the correct element 'map' in the DOM, so need DOM charged
+  var mapElement = document.getElementById('map');
+
+  if (mapElement) {
+    // STEP 1: init map
+    map = new google.maps.Map(mapElement, {
+          zoom: 6,
+          center: {lat: 43.3, lng: 5.4}
+        });
+
+    // STEP 2: load GeoJson
+    map.data.loadGeoJson('/api/v1/harbours/');
+
+    // STEP 3: set style
+    map.data.setStyle(function(feature) {
+      var totalvolume = feature.getProperty('totvol');
+      return {
+        icon: getCircle(totalvolume)
+      };
+    });
+
+  };
+  // else { console.log("there is no mapElement")};
+}
+
 function getCircle(totalvolume) {
   return {
     path: google.maps.SymbolPath.CIRCLE,
@@ -12,34 +39,8 @@ function getCircle(totalvolume) {
 }
 
 
-// direct execution
+// execution
 
-var map;
+initMap();
 
-// would be needed if calling initMap various times --> would need to call "initMap()"
-// function initMap() {...}
-
-// look for the correct element 'map' in the DOM, so need DOM charged
-var mapElement = document.getElementById('map');
-
-if (mapElement) {
-  // STEP 1
-  map = new google.maps.Map(mapElement, {
-        zoom: 6,
-        center: {lat: 43.3, lng: 5.4}
-      });
-
-  // STEP 2
-  var jsonparsed = JSON.parse(mapElement.dataset.geojson);
-  map.data.addGeoJson(jsonparsed);
-
-  // STEP 3
-  map.data.setStyle(function(feature) {
-    var totalvolume = feature.getProperty('totvol');
-    return {
-      icon: getCircle(totalvolume)
-    };
-  });
-
-}
-// else { console.log("there is no mapElement")};
+export { initMap, getCircle };
