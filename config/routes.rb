@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
     root to: 'harbours#index'
     resources :movements, only:[:index]
-    # resources :harbours, only:[:index]
+    resources :harbours, only:[:index]
 
     namespace :api, defaults: { format: :json } do
       namespace :v1 do
