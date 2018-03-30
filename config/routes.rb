@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   scope '(:locale)', locale: /en|es/ do
 
-    root to: 'pages#home'
+    root to: 'harbours#index'
     resources :movements, only:[:index]
     # resources :harbours, only:[:index]
 
