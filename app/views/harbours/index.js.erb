@@ -1,11 +1,19 @@
-// function definitions
+// import { initMap } from '../../javascript/packs/map';
 
-function initMap() {
+console.log("test");
+
+var mapElement = document.getElementById('map');
+
+mapElement.dataset.geojson = JSON.stringify(<%= @geojson.to_json.html_safe %>);
+
+// trigger new event mapDatasetUpdated
+
+// initMap();
 
   var map;
 
   // look for the correct element 'map' in the DOM, so need DOM charged
-  var mapElement = document.getElementById('map');
+  // var mapElement = document.getElementById('map');
 
   if (mapElement) {
     // STEP 1: init map
@@ -25,10 +33,8 @@ function initMap() {
         icon: getCircle(totalvolume)
       };
     });
+  }
 
-  };
-  // else { console.log("there is no mapElement")};
-}
 
 function getCircle(totalvolume) {
   return {
@@ -40,14 +46,3 @@ function getCircle(totalvolume) {
     strokeWeight: 1
   };
 }
-
-// google.maps.event.addDomListener(window, "load", initMap);
-
-// execution
-
-initMap();
-
-// var mapElement = document.getElementById('map');
-// eventListener dataset
-
-export { initMap, getCircle };
