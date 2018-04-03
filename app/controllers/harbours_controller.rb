@@ -6,23 +6,33 @@ class HarboursController < ApplicationController
   def index
     @harbours = policy_scope(Harbour)
 
+  # binding.pry
+
     @selected_harbours = []
     if (params[:name])
-      @selected_harbours << @harbours.where(name: params[:name]).first
+      params[:name].each do |harbour|
+        @selected_harbours << @harbours.where(name: harbour).first
+      end
     end
 
     # binding.pry
+
+# http://localhost:3000/harbours?name%5B%5D=bastia&name%5B%5D=bayonne&_=1522768541831
+
     @features = @selected_harbours.map do |harbour|
       {
         "type": "Feature", #1 feature ~ 1 harbour where (movements.filter).sum
         "properties": {
+          "country": harbour.country,
+          "name": harbour.name,
+          "address": harbour.address,
           "totvol": 123123 # harbour.movements.types.where(flow: flow, code: code) # total sum to calculate
         },
         "geometry": {
           "type": "Point",
           "coordinates": [harbour.longitude, harbour.latitude]
-        }#,
-        #"id": "usc000csx3"
+        },
+        "id": harbour.id
       }
     end
 
