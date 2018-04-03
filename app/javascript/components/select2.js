@@ -15,19 +15,43 @@ import 'select2/dist/css/select2.css';
 
 // event listener
 $('#select2_harbours').on("select2:select", (event) => {
-  var harbourSelected = event.params.data.text;
-  console.log(harbourSelected); // -> bayonne  -> OK
-  // call AJAX
+  let values = [];
+  $(event.currentTarget).find("option:selected").each(function(i, selected){
+    values[i] = $(selected).text();
+  });
+  console.log(values);
+
+
+  // console.log(event);
+  // console.log(event.params);
+  // console.log(event.params.data);
+  // var harbourSelected = event.params.data.text;
+  // console.log(harbourSelected); // -> bayonne  -> OK
+
   $.get({
     url: '/harbours',
     dataType: "script",
-    data: {name: harbourSelected}
-    // success: function(data, status){
-    //         alert(data);
-    //         map.data.addGeoJson(data);
-            // initMap();
-    // }
+    data: {name: values}//harbourSelected}
   });
-// requete ajax doit avoir json en response, passe dans call back et y manipule cet object + 2eme function en cas d'erreur
-// .done et .fail
+});
+
+$('#select2_harbours').on("select2:unselect", (event) => {
+  let values = [];
+  $(event.currentTarget).find("option:selected").each(function(i, selected){
+    values[i] = $(selected).text();
+  });
+  console.log(values);
+
+
+  // console.log(event);
+  // console.log(event.params);
+  // console.log(event.params.data);
+  // var harbourSelected = event.params.data.text;
+  // console.log(harbourSelected); // -> bayonne  -> OK
+
+  $.get({
+    url: '/harbours',
+    dataType: "script",
+    data: {name: values}//harbourSelected}
+  });
 });
