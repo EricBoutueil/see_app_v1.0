@@ -12,6 +12,19 @@ class Harbour < ApplicationRecord
     "#{address}, #{country}"
   end
 
+  def self.filter_by_harbour(params, harbours)
+    # binding.pry
+    @selected_harbours = []
+    if (params[:name])
+      params[:name].each do |harbour|
+        @selected_harbours << harbours.where(name: harbour).first
+      end
+    else
+      @selected_harbours = harbours
+    end
+    return @selected_harbours
+  end
+
   def filter_by_year
     filtered_by_year = []
     if (params[:year])
