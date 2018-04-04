@@ -6,7 +6,7 @@ class HarboursController < ApplicationController
   def index
     @harbours = policy_scope(Harbour)
 
-    @selected_harbours = Harbour.filter_by_harbour(params, @harbours)
+    @selected_harbours = Harbour.filter_by_harbour(harbours_params, @harbours)
 
     @features = @selected_harbours.map do |selharbour|
       {
@@ -15,7 +15,7 @@ class HarboursController < ApplicationController
           "country": selharbour.country,
           "name": selharbour.name,
           "address": selharbour.address,
-          "totvol": selharbour.totvol_filter(params) # harbour.totvol_filter == harbour.movements.types.where(flow: flow, code: code) # total sum to calculate
+          "totvol": selharbour.totvol_filter(harbours_params) # harbour.totvol_filter == harbour.movements.types.where(flow: flow, code: code) # total sum to calculate
         },
         "geometry": {
           "type": "Point",
@@ -35,6 +35,14 @@ class HarboursController < ApplicationController
       format.html
       format.js  # <-- will render `app/views/harbours/index.js.erb`
     end
-
   end
+
+  private
+
+  def harbours_params
+    unless params[:name].nil? || params[:year].nil? || params[:code].nil? || params[:flow].nil? || params[:volume]
+      params.require(:harbour).permit(:name, :year, :code, :flow, :volume)
+    end
+  end
+
 end

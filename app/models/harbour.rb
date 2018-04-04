@@ -18,9 +18,11 @@ class Harbour < ApplicationRecord
 
   def self.filter_by_harbour(params, harbours)
     @selected_harbours = []
-    if (params[:name])
-      params[:name].each do |h|
-        @selected_harbours << harbours.where(name: h).first
+    unless (params.nil?)
+      if (params[:name])
+        params[:name].each do |h|
+          @selected_harbours << harbours.where(name: h).first
+        end
       end
     else
       @selected_harbours = harbours
@@ -44,9 +46,11 @@ class Harbour < ApplicationRecord
 
   def vol_filter_by_year(params)
     @mvts_year = []
-    if (params[:year])
-      params[:year].each do |y|
-        @mvts_year << self.movements.where(year: y)
+    unless (params.nil?)
+      if (params[:year])
+        params[:year].each do |y|
+          @mvts_year << self.movements.where(year: y)
+        end
       end
     else
       # (2a) find max -> Model.maximum(column_name, options = {}) -> YEAR_MAX
@@ -60,11 +64,12 @@ class Harbour < ApplicationRecord
   def vol_filter_by_family(params)
     # (3) without (4)
     @mvts_fam = []
-    if (params[:code]) # can only have 1 familly code, no .each needed
-      @mvts_year.each do |m|
-        @mvts_fam << m.where(code: params[:code]) # can include tot, imp, exp mvts
+    unless (params.nil?)
+      if (params[:code]) # can only have 1 familly code, no .each needed
+        @mvts_year.each do |m|
+          @mvts_fam << m.where(code: params[:code]) # can include tot, imp, exp mvts
+        end
       end
-      # end
     else
       @mvts_year.each do |m|
         if m.type.code == "a"  # or b, c, d, e => code.length == 1
@@ -78,9 +83,11 @@ class Harbour < ApplicationRecord
   def vol_filter_by_flow(params)
     # (5)
     @mvt_flow = []
-    if (params[:flow] == ( "imp" || "exp" )) # can be either tot, imp or exp mvt
-      @mvts_fam.each do |m|
-        @mvt_flow = m.where(flow: params[:flow]) # can include only 1 flow
+    unless (params.nil?)
+      if (params[:flow] == ( "imp" || "exp" )) # can be either tot, imp or exp mvt
+        @mvts_fam.each do |m|
+          @mvt_flow = m.where(flow: params[:flow]) # can include only 1 flow
+        end
       end
     else
       @mvts_fam.each do |m|
