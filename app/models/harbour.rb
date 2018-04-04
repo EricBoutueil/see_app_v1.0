@@ -60,8 +60,7 @@ class Harbour < ApplicationRecord
   def vol_filter_by_family(params)
     # (3) without (4)
     @mvts_fam = []
-    if (params[:code])
-      # params[:code].each do |c| # TBU: can only have 1 familly code, no .each needed
+    if (params[:code]) # can only have 1 familly code, no .each needed
       @mvts_year.each do |m|
         @mvts_fam << m.where(code: params[:code]) # can include tot, imp, exp mvts
       end
@@ -95,79 +94,11 @@ class Harbour < ApplicationRecord
     return @mvt_flow
   end
 
-  # def confirm_tot_flow(mvt)
-  #   [mvt.type.imp.volume + mvt.type.exp.volume, mvt.type.tot.volume].max
-  # end
-
-
     # # (4)
     # params[:code].each do |code|
     #   unless code.length == 1 #except a, b, c, d, e
     #     @mvts_subfam = @fams_mvt
     #   end
-
-
-    # + sum their volumes
-
-      # NA # select each harbour from selected_harbours
-      # NA # selharbours.each do |h|
-
-# Order.where(subscription_ends_at: param_date).
-#   joins(:member).
-#   where.not('subscription_starts_at >= ?', param_date.to_date + 1.day))
-#   where(members: {mandate_status: ['SUBMITTED', 'ACTIVE'], automatic_renewal: true})
-
-
-  # harbour.movements.types.where(flow: flow, code: code) # total sum to calculate
-
-  # def sum_tot_vol_by_type(code, flow)
-  #   self.movements.group(:code (&?) :flow).where(code: code, flow: flow).pluck(:volume).sum
-  # end
-
-
-
-  # def self.vol_filter_by_family(params, harbours)
-  #   @filtered_by_code = []
-  #   if (params[:code])
-  #     params[:code].each do |c|
-  #       @filtered_by_code << @selected_harbours.map do |h|
-  #         h.movements.select do |movement|
-  #           movement.types.where(code: c)
-  #       end
-  #     end
-  #   else
-  #     @filtered_by_code = where.[code: "a"]
-  #   end
-  #   return filtered_by_code
-  # end
-
-  # def self.filter_by_year(params, harbours)
-  #   @filtered_by_year = []
-  #   if (params[:year])
-  #     params[:year].each do |y|
-  #       @filtered_by_year << @harbours.map do |harbour|
-  #         harbour.movement.where(year: y)
-  #       end
-  #     end
-  #   else
-  #     filtered_by_year = [Movement.maximum("year")]
-  #   end
-  #   return filtered_by_year
-  # end
-
-  # def filter_by_flow
-  #   filtered_by_flow = []
-  #   if (params[:flow])
-  #     filtered_by_flow = @harbours.map do |harbour|
-  #       harbour.movements.select do |movement|
-  #         movement.types.where(flow: params[:flow])
-  #       end
-  #     end
-  #   else
-  #     filtered_by_flow = ["tot"]
-  #   end
-  #   return filtered_by_flow
-  # end
 
 end
 
