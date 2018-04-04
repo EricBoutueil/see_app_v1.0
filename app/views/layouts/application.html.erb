@@ -26,7 +26,6 @@
     <%= javascript_pack_tag 'application' %>
 
     <!-- charging google js api library - needed before map-->
-    <%#= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyB4UokUNm9gH9YCoz-x-Q4Iu__zSUQuAlY" %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
 
     <!-- note: "&callback=initMap" would have called initMap after library charged -->
