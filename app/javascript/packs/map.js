@@ -35,7 +35,7 @@ function getCircle(totalvolume) {
     path: google.maps.SymbolPath.CIRCLE,
     fillColor: 'blue',
     fillOpacity: .8,
-    scale: 10, // = MAX_TOTALVOLUME --> calc < 20 ? -> each totalvolume range between max harbour 8e7 -> 4e6 // 5e06 -> 3e5 // 100 -> need max
+    scale: 20, // 'totalvolume' // * 20 / Harbour.tot_vol_max, // = MAX_TOTALVOLUME --> calc < 20 ? -> each totalvolume range between max harbour 8e7 -> 4e6 // 5e06 -> 3e5 // 100 -> need max
     strokeColor: 'blue',
     strokeWeight: 1
   };
