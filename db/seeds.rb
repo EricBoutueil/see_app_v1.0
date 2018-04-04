@@ -407,6 +407,6 @@ Movement.create!( harbour: bayonne, type: a2exp, year: 2014, terminal: "terminal
 Movement.create!( harbour: bayonne, type: a3exp, year: 2014, terminal: "terminal 4", pol_pod: "marseille", volume: 38337)
 
 Movement.create!( harbour: bayonne, type: eexp, year: 2014, terminal: "terminal 3", pol_pod: "marseille", volume: 40)
-
+Movement.create!( harbour: bayonne, type: eexp, year: 2015, terminal: "terminal 3", pol_pod: "marseille", volume: 15)
 
 puts "done MINI movements seeds"

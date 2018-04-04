@@ -25,11 +25,13 @@ class Harbour < ApplicationRecord
     return @selected_harbours
   end
 
-  def filter_by_year
-    filtered_by_year = []
+  def self.filter_by_year(params, harbours)
+    @filtered_by_year = []
     if (params[:year])
-      filtered_by_year = @harbours.map do |harbour|
-        harbour.movement.where(year: params[:year])
+      params[:year].each do |y|
+        @filtered_by_year << @harbours.map do |harbour|
+          harbour.movement.where(year: y)
+        end
       end
     else
       filtered_by_year = [Type.maximum("year")]
