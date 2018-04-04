@@ -28,7 +28,7 @@ class Harbour < ApplicationRecord
 
   # above == functional
 
-  def totvol_no_filter(params, selharbours)
+  def totvol_no_filter(params)
     # 1st step: no sum, just filter selected lines
     # if no filter -> (1) selected harbours, (2) harbours max year,
     # (3) A (and/or 4) all sub fam, (5) tot flux (or exp + imp) [, (6) term, (7) pol_pod]
@@ -37,8 +37,8 @@ class Harbour < ApplicationRecord
     # (2a) find max -> Model.maximum(column_name, options = {})
     year_max = Movement.maximum("year") # to be updated with selharbours?
     # (2b) # for console self == Harbour.last + need initialize @ + << .first and .last
-    # @mvts_year = self.movements.where(year: year_max)
-    @mvts_year = Harbour.last.movements.where(year: year_max) # for console only (small seeds)
+    @mvts_year = self.movements.where(year: year_max)
+    # @mvts_year = Harbour.last.movements.where(year: year_max) # for console only (small seeds)
     # (3) without (4)
     @mvts_fam = []
     @mvts_year.each do |m|
