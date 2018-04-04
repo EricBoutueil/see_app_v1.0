@@ -1,0 +1,4 @@
+# Order.where(subscription_ends_at: param_date).
+#   joins(:member).
+#   where.not('subscription_starts_at >= ?', param_date.to_date + 1.day))
+#   where(members: {mandate_status: ['SUBMITTED', 'ACTIVE'], automatic_renewal: true})

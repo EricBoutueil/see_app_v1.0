@@ -9,7 +9,7 @@
 puts "Starting seed for DEV ENV"
 
 Movement.destroy_all
-Harbour.destroy_all
+# Harbour.destroy_all # commented until google api access denied solved
 Type.destroy_all
 # User.destroy_all
 puts "DB cleaned"
@@ -20,25 +20,25 @@ example = User.find_or_create_by(
 example.password = "password"
 puts "Added user@example.com"
 
-# Harbour
+# # Harbour
 
-puts "Creating harbours seeds"
-ajaccio = Harbour.create!(
-  country: "France",
-  name: "ajaccio",
-  address: "ajaccio"
-  )
-bastia = Harbour.create!(
-  country: "France",
-  name: "bastia",
-  address: "bastia"
-  )
-bayonne = Harbour.create!(
-  country: "France",
-  name: "bayonne",
-  address: "bayonne"
-  )
-puts "done harbours seeds"
+# puts "Creating harbours seeds"
+# ajaccio = Harbour.create!(
+#   country: "France",
+#   name: "ajaccio",
+#   address: "ajaccio"
+#   )
+# bastia = Harbour.create!(
+#   country: "France",
+#   name: "bastia",
+#   address: "bastia"
+#   )
+# bayonne = Harbour.create!(
+#   country: "France",
+#   name: "bayonne",
+#   address: "bayonne"
+#   )
+# puts "done harbours seeds"
 
 # Type
 
@@ -400,13 +400,13 @@ Movement.create!( harbour: bastia, type: aimp, year: 2014, terminal: "", pol_pod
 Movement.create!( harbour: bayonne, type: aexp, year: 2014, terminal: "", pol_pod: "", volume: 116673)
 Movement.create!( harbour: bayonne, type: aimp, year: 2014, terminal: "", pol_pod: "", volume: 90117)
 
-Movement.create!( harbour: bayonne, type: a1exp, year: 2014, terminal: "terminal 4", pol_pod: "marseille", volume: 24535)
-Movement.create!( harbour: bayonne, type: a11exp, year: 2014, terminal: "terminal 2", pol_pod: "marseille", volume: 16963)
-Movement.create!( harbour: bayonne, type: a111exp, year: 2014, terminal: "terminal 4", pol_pod: "marseille", volume: 0)
-Movement.create!( harbour: bayonne, type: a2exp, year: 2014, terminal: "terminal 2", pol_pod: "marseille", volume: 53801)
-Movement.create!( harbour: bayonne, type: a3exp, year: 2014, terminal: "terminal 4", pol_pod: "marseille", volume: 38337)
+# Movement.create!( harbour: bayonne, type: a1exp, year: 2014, terminal: "terminal 4", pol_pod: "marseille", volume: 24535)
+# Movement.create!( harbour: bayonne, type: a11exp, year: 2014, terminal: "terminal 2", pol_pod: "marseille", volume: 16963)
+# Movement.create!( harbour: bayonne, type: a111exp, year: 2014, terminal: "terminal 4", pol_pod: "marseille", volume: 0)
+# Movement.create!( harbour: bayonne, type: a2exp, year: 2014, terminal: "terminal 2", pol_pod: "marseille", volume: 53801)
+# Movement.create!( harbour: bayonne, type: a3exp, year: 2014, terminal: "terminal 4", pol_pod: "marseille", volume: 38337)
 
 Movement.create!( harbour: bayonne, type: eexp, year: 2014, terminal: "terminal 3", pol_pod: "marseille", volume: 40)
-Movement.create!( harbour: bayonne, type: eexp, year: 2015, terminal: "terminal 3", pol_pod: "marseille", volume: 15)
+Movement.create!( harbour: bayonne, type: eexp, year: 2013, terminal: "terminal 3", pol_pod: "marseille", volume: 13)
 
 puts "done MINI movements seeds"
