@@ -15,7 +15,7 @@ class HarboursController < ApplicationController
           "country": selharbour.country,
           "name": selharbour.name,
           "address": selharbour.address,
-          "totvol": selharbour.totvol_no_filter(params) # harbour.totvol_filter == harbour.movements.types.where(flow: flow, code: code) # total sum to calculate
+          "totvol": selharbour.totvol_filter(params) # harbour.totvol_filter == harbour.movements.types.where(flow: flow, code: code) # total sum to calculate
         },
         "geometry": {
           "type": "Point",

@@ -10,6 +10,8 @@ class Harbour < ApplicationRecord
   geocoded_by :full_address
   after_validation :geocode #:address_changed?
 
+  YEAR_MAX = Movement.maximum("year") # to be updated with selharbours?
+
   def full_address
     "#{address}, #{country}"
   end
@@ -28,36 +30,70 @@ class Harbour < ApplicationRecord
 
   # above == functional
 
-  def totvol_no_filter(params)
-    # 1st step: no sum, just filter selected lines
-    # if no filter -> (1) selected harbours, (2) harbours max year,
+  def totvol_filter(params)
+    # no sum, just filter selected lines
+    # steps: if no filter -> (1) selected harbours, (2) harbours max year,
     # (3) A (and/or 4) all sub fam, (5) tot flux (or exp + imp) [, (6) term, (7) pol_pod]
 
-    # (1) from parameters
-    # (2a) find max -> Model.maximum(column_name, options = {})
-    year_max = Movement.maximum("year") # to be updated with selharbours?
-    # (2b) # for console self == Harbour.last + need initialize @ + << .first and .last
-    @mvts_year = self.movements.where(year: year_max)
-    # @mvts_year = Harbour.last.movements.where(year: year_max) # for console only (small seeds)
-    # (3) without (4)
-    @mvts_fam = []
-    @mvts_year.each do |m|
-      if m.type.code == "a"  # or b, c, d, e => code.length == 1
-        @mvts_fam << m
-      end
-    end
-    # (5)
-    @mvt_flow = []
-    @mvts_fam.each do |m|
-      if m.type.flow.include?("tot")
-        @mvt_flow << m.where(type: {flow: "tot"})
-      else
-        @mvt_flow = @mvts_fam
-      end
-    end
+    # -> (1) from feature
+    self.vol_filter_by_year(params) # -> (2)
+    self.vol_filter_by_family(params) # -> (3) without (4)
+    self.vol_filter_by_flow(params) # -> (5)
     @totvol = @mvt_flow.pluck(:volume).sum
   end
 
+  def vol_filter_by_year(params)
+    @mvts_year = []
+    if (params[:year])
+      params[:year].each do |y|
+        @mvts_year << self.movements.where(year: y)
+      end
+    else
+      # (2a) find max -> Model.maximum(column_name, options = {}) -> YEAR_MAX
+      # (2b) # for console self == Harbour.last + need initialize @ + << .first and .last
+      @mvts_year = self.movements.where(year: YEAR_MAX)
+      # @mvts_year = Harbour.last.movements.where(year: year_max) # for console only (small seeds)
+    end
+    return @mvts_year
+  end
+
+  def vol_filter_by_family(params)
+    # (3) without (4)
+    @mvts_fam = []
+    if (params[:code])
+      # params[:code].each do |c| # TBU: can only have 1 familly code, no .each needed
+      @mvts_year.each do |m|
+        @mvts_fam << m.where(code: params[:code]) # can include tot, imp, exp mvts
+      end
+      # end
+    else
+      @mvts_year.each do |m|
+        if m.type.code == "a"  # or b, c, d, e => code.length == 1
+          @mvts_fam << m
+        end
+      end
+    end
+    return @mvts_fam
+  end
+
+  def vol_filter_by_flow(params)
+    # (5)
+    @mvt_flow = []
+    if (params[:flow] == ( "imp" || "exp" )) # can be either tot, imp or exp mvt
+      @mvts_fam.each do |m|
+        @mvt_flow = m.where(flow: params[:flow]) # can include only 1 flow
+      end
+    else
+      @mvts_fam.each do |m|
+        if m.type.flow.include?("tot")
+          @mvt_flow << m.where(type: {flow: "tot"})
+        else
+          @mvt_flow = @mvts_fam
+        end
+      end
+    end
+    return @mvt_flow
+  end
 
   # def confirm_tot_flow(mvt)
   #   [mvt.type.imp.volume + mvt.type.exp.volume, mvt.type.tot.volume].max

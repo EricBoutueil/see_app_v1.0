@@ -19,9 +19,9 @@
     <% end %>
   </select>
 
-  <%# @harbours.map do |h| %>
-    <!-- <li><%#= h.totvol_no_filter(params) %></li> -->
-  <%# end %>
+  <% @harbours.map do |h| %>
+    <li><%= h.totvol_filter(params) %></li>
+  <% end %>
 
   <div
     id="map"
