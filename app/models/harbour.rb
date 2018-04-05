@@ -17,6 +17,7 @@ class Harbour < ApplicationRecord
   end
 
   def self.filter_by_harbour(params, harbours)
+    # binding.pry
     @selected_harbours = []
     if (params[:name])
       params[:name].each do |h|
@@ -43,6 +44,7 @@ class Harbour < ApplicationRecord
   end
 
   def vol_filter_by_year(params)
+    # binding.pry
     @mvts_year = []
     if (params[:year])
       params[:year].each do |y|
@@ -59,14 +61,15 @@ class Harbour < ApplicationRecord
 
   def vol_filter_by_family(params)
     # (3) without (4)
-    @mvts_fam = []
     if (params[:code]) # can only have 1 familly code, no .each needed
-      @mvts_year.each do |m|
-        @mvts_fam << m.where(code: params[:code]) # can include tot, imp, exp mvts
+      @mvts_fam = @mvts_year.select do |m|
+        m.where(code: params[:code]) # can include tot, imp, exp mvts
       end
       # end
     else
-      @mvts_year.each do |m|
+      @mvts_fam = [] # ok with no filter
+      # binding.pry
+      @mvts_year.to_a.flatten.each do |m|
         if m.type.code == "a"  # or b, c, d, e => code.length == 1
           @mvts_fam << m
         end
@@ -77,17 +80,16 @@ class Harbour < ApplicationRecord
 
   def vol_filter_by_flow(params)
     # (5)
-    @mvt_flow = []
     if (params[:flow] == ( "imp" || "exp" )) # can be either tot, imp or exp mvt
-      @mvts_fam.each do |m|
-        @mvt_flow = m.where(flow: params[:flow]) # can include only 1 flow
+      @mvt_flow = @mvts_fam.select do |m|
+         m.where(flow: params[:flow]) # can include only 1 flow
       end
     else
-      @mvts_fam.each do |m|
+      @mvt_flow = @mvts_fam.select do |m|
         if m.type.flow.include?("tot")
-          @mvt_flow << m.where(type: {flow: "tot"})
+          m.where(type: {flow: "tot"})
         else
-          @mvt_flow = @mvts_fam
+          @mvts_fam
         end
       end
     end

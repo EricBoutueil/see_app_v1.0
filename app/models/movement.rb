@@ -11,4 +11,20 @@ class Movement < ApplicationRecord
   def type_identification
     "#{self.type.code} #{self.type.flow}"
   end
+
+  # list of instance variables for each filter
+
+  def self.all_years
+    # binding.pry
+    @years = []
+      Movement.all.each do |m|
+        unless @years.include?(m.year)
+          @years << m.year
+        end
+      end
+    return @years
+  end
+
+  ALL_YEARS = self.all_years
+
 end
