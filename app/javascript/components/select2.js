@@ -13,20 +13,14 @@ $('#select2_harbours').select2({
 // CSS included in JS (not in asset pipeline) and available in / compiled by Webpack
 import 'select2/dist/css/select2.css';
 
-// event listener
+// event listener for each new (un)selected harbour
 $('#select2_harbours').on("select2:select", (event) => {
+// take ALL the (un)selected harbour
   let values = [];
   $(event.currentTarget).find("option:selected").each(function(i, selected){
     values[i] = $(selected).text();
   });
   console.log(values);
-
-
-  // console.log(event);
-  // console.log(event.params);
-  // console.log(event.params.data);
-  // var harbourSelected = event.params.data.text;
-  // console.log(harbourSelected); // -> bayonne  -> OK
 
   $.get({
     url: '/harbours',
@@ -35,23 +29,9 @@ $('#select2_harbours').on("select2:select", (event) => {
   });
 });
 
-$('#select2_harbours').on("select2:unselect", (event) => {
-  let values = [];
-  $(event.currentTarget).find("option:selected").each(function(i, selected){
-    values[i] = $(selected).text();
-  });
-  console.log(values);
-
 
   // console.log(event);
   // console.log(event.params);
   // console.log(event.params.data);
   // var harbourSelected = event.params.data.text;
   // console.log(harbourSelected); // -> bayonne  -> OK
-
-  $.get({
-    url: '/harbours',
-    dataType: "script",
-    data: {name: values}//harbourSelected}
-  });
-});

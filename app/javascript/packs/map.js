@@ -1,5 +1,7 @@
 // function definitions
 
+let totalVolumeMax = 0;
+
 function initMap() {
 
   var map;
@@ -18,11 +20,19 @@ function initMap() {
     var jsonparsed = JSON.parse(mapElement.dataset.geojson);
     map.data.addGeoJson(jsonparsed);
 
+    // check max totvol
+    map.data.forEach(function(feature) {
+        if (feature.getProperty('totvol') > totalVolumeMax) {
+          totalVolumeMax = feature.getProperty('totvol');
+        };
+    });
+    // console.log(totalVolumeMax)
+
     // STEP 3: set style
     map.data.setStyle(function(feature) {
-      var totalvolume = feature.getProperty('totvol');
+      var totalVolume = feature.getProperty('totvol');
       return {
-        icon: getCircle(totalvolume)
+        icon: getCircle(totalVolume)
       };
     });
 
@@ -30,12 +40,13 @@ function initMap() {
   // else { console.log("there is no mapElement")};
 }
 
-function getCircle(totalvolume) {
+// note: markers ares symbols (circles)
+function getCircle(totalVolume) {
   return {
     path: google.maps.SymbolPath.CIRCLE,
     fillColor: 'blue',
     fillOpacity: .8,
-    scale: 20, // 'totalvolume' // * 20 / Harbour.tot_vol_max, // = MAX_TOTALVOLUME --> calc < 20 ? -> each totalvolume range between max harbour 8e7 -> 4e6 // 5e06 -> 3e5 // 100 -> need max
+    scale: (totalVolume * 20 / totalVolumeMax), // 'totalVolume' // * 20 / Harbour.tot_vol_max, // = MAX_TOTALVOLUME --> calc < 20 ? -> each totalVolume range between max harbour 8e7 -> 4e6 // 5e06 -> 3e5 // 100 -> need max
     strokeColor: 'blue',
     strokeWeight: 1
   };

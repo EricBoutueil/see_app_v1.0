@@ -4,6 +4,7 @@ console.log("test");
 
 var mapElement = document.getElementById('map');
 
+// update value of geojson through dataset.geojson == data-geojson
 mapElement.dataset.geojson = JSON.stringify(<%= @geojson.to_json.html_safe %>);
 
 // trigger new event mapDatasetUpdated
@@ -13,8 +14,6 @@ mapElement.dataset.geojson = JSON.stringify(<%= @geojson.to_json.html_safe %>);
   var map;
 
   // look for the correct element 'map' in the DOM, so need DOM charged
-  // var mapElement = document.getElementById('map');
-
   if (mapElement) {
     // STEP 1: init map
     map = new google.maps.Map(mapElement, {
@@ -28,20 +27,20 @@ mapElement.dataset.geojson = JSON.stringify(<%= @geojson.to_json.html_safe %>);
 
     // STEP 3: set style
     map.data.setStyle(function(feature) {
-      var totalvolume = feature.getProperty('totvol');
+      var totalVolume = feature.getProperty('totvol');
       return {
-        icon: getCircle(totalvolume)
+        icon: getCircle(totalVolume)
       };
     });
   }
 
 
-function getCircle(totalvolume) {
+function getCircle(totalVolume) {
   return {
     path: google.maps.SymbolPath.CIRCLE,
     fillColor: 'blue',
     fillOpacity: .8,
-    scale: 10, // = MAX_TOTALVOLUME --> calc < 20 ? -> each totalvolume range between max harbour 8e7 -> 4e6 // 5e06 -> 3e5 // 100 -> need max
+    scale: 10, // = MAX_TOTALVOLUME --> calc < 20 ? -> each totalVolume range between max harbour 8e7 -> 4e6 // 5e06 -> 3e5 // 100 -> need max
     strokeColor: 'blue',
     strokeWeight: 1
   };
