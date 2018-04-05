@@ -27,7 +27,7 @@ $('#select2_harbours').on("select2:select", (event) => {
   $(event.currentTarget).find("option:selected").each(function(i, selected){
     values[i] = $(selected).text();
   });
-  // console.log(values);
+  console.log("harbours after selected = " + values);
   // call ajax get
   $.get({
     url: '/harbours',
@@ -43,7 +43,7 @@ $('#select2_harbours').on("select2:unselect", (event) => {
   $(event.currentTarget).find("option:selected").each(function(i, selected){
     values[i] = $(selected).text();
   });
-  // console.log(values);
+  console.log("harbours after unselected = " + values);
   // call ajax get
   $.get({
     url: '/harbours',
@@ -68,6 +68,7 @@ $('#select2_years').on("select2:select", (event) => { // TBU for each filter
   $(event.currentTarget).find("option:selected").each(function(i, selected){
     values[i] = $(selected).text();
   });
+  console.log("years after selected = " + values);
   // call ajax get
   $.get({
     url: '/harbours',
@@ -83,6 +84,7 @@ $('#select2_years').on("select2:unselect", (event) => { // TBU for each filter
   $(event.currentTarget).find("option:selected").each(function(i, selected){
     values[i] = $(selected).text();
   });
+  console.log("years after unselected = " + values);
   // call ajax get
   $.get({
     url: '/harbours',

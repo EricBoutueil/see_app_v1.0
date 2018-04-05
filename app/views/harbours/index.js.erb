@@ -33,7 +33,7 @@ mapElement.dataset.geojson = JSON.stringify(<%= @geojson.to_json.html_safe %>);
           totalVolumeMax = feature.getProperty('totvol');
         };
     });
-    // console.log(totalVolumeMax)
+    console.log('total volume max = ' + totalVolumeMax)
 
     // STEP 3: set style
     map.data.setStyle(function(feature) {
