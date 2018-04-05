@@ -15,14 +15,14 @@
     <input type="submit">
   </form> -->
 
-  <p>Filtre par port:</p>
+  <p class="mb0 mt-">Filtre par port:</p>
   <select id="select2_harbours", multiple=true, style="width: 500px">
     <% @harbours.map do |h| %>
       <option value="<%= h.name %>"><%= h.name %></option>
     <% end %>
   </select>
 
-  <p>Filtre par year:</p>
+  <p class="mb0 mt-">Filtre par year:</p>
   <select id="select2_years", multiple=true, style="width: 500px">
     <% Movement::ALL_YEARS.map do |y| %>
       <option value="<%= y %>"><%= y %></option>
@@ -38,6 +38,7 @@
     style="width: 100%;
     height: 600px;"
     data-geojson="<%= @geojson.to_json %>"
+    class="mt-"
   ></div>
 
 </div>
