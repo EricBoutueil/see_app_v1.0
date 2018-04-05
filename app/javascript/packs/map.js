@@ -1,6 +1,6 @@
 // function definitions
 
-let totalVolumeMax = 0;
+var totalVolumeMax = 0;
 
 function initMap() {
 
@@ -46,7 +46,7 @@ function getCircle(totalVolume) {
     path: google.maps.SymbolPath.CIRCLE,
     fillColor: 'blue',
     fillOpacity: .8,
-    scale: (totalVolume * 20 / totalVolumeMax), // 'totalVolume' // * 20 / Harbour.tot_vol_max, // = MAX_TOTALVOLUME --> calc < 20 ? -> each totalVolume range between max harbour 8e7 -> 4e6 // 5e06 -> 3e5 // 100 -> need max
+    scale: (totalVolume * 20 / totalVolumeMax),
     strokeColor: 'blue',
     strokeWeight: 1
   };
