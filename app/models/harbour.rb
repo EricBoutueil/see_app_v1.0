@@ -100,6 +100,14 @@ class Harbour < ApplicationRecord
     #     @mvts_subfam = @fams_mvt
     #   end
 
+  # def self.tot_vol_max
+  #   tot_vol_all = []
+  #   @selected_harbours.each do |h|
+  #     tot_vol_all << h.total_filter(params)
+  #   end
+  #   @tot_vol_max = tot_vol_all.max
+  # end
+
 end
 
 # NOTES:

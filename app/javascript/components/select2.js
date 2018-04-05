@@ -13,8 +13,9 @@ $('#select2_harbours').select2({
 // CSS included in JS (not in asset pipeline) and available in / compiled by Webpack
 import 'select2/dist/css/select2.css';
 
-// event listener
+// event listener for each new selected harbour
 $('#select2_harbours').on("select2:select", (event) => {
+// take ALL the (un)selected harbour
   let values = [];
   $(event.currentTarget).find("option:selected").each(function(i, selected){
     values[i] = $(selected).text();
@@ -35,7 +36,9 @@ $('#select2_harbours').on("select2:select", (event) => {
   });
 });
 
+// event listener for each new UNselected harbour
 $('#select2_harbours').on("select2:unselect", (event) => {
+// take ALL the (un)selected harbour
   let values = [];
   $(event.currentTarget).find("option:selected").each(function(i, selected){
     values[i] = $(selected).text();
