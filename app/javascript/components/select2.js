@@ -1,7 +1,14 @@
+// steps: if no filter -> (1) selected harbours, (2) harbours max year,
+// (3) A (and/or 4) all sub fam, (5) tot flux (or exp + imp) [, (6) term, (7) pol_pod]
+
+
 import $ from 'jquery';
 import 'select2';
 
 // import '../packs/map'
+
+
+// HARBOURS
 
 // select2 field only
 // $ = document.querySelectorAll(...) for jquery plugin, and call select2 on it
@@ -20,15 +27,8 @@ $('#select2_harbours').on("select2:select", (event) => {
   $(event.currentTarget).find("option:selected").each(function(i, selected){
     values[i] = $(selected).text();
   });
-  console.log(values);
-
-
-  // console.log(event);
-  // console.log(event.params);
-  // console.log(event.params.data);
-  // var harbourSelected = event.params.data.text;
-  // console.log(harbourSelected); // -> bayonne  -> OK
-
+  // console.log(values);
+  // call ajax get
   $.get({
     url: '/harbours',
     dataType: "script",
@@ -43,7 +43,54 @@ $('#select2_harbours').on("select2:unselect", (event) => {
   $(event.currentTarget).find("option:selected").each(function(i, selected){
     values[i] = $(selected).text();
   });
-  console.log(values);
+  // console.log(values);
+  // call ajax get
+  $.get({
+    url: '/harbours',
+    dataType: "script",
+    data: {name: values}
+  });
+});
+
+
+// YEARS
+
+$('#select2_years').select2({ // TBU for each filter
+    placeholder: "Ecrivez ou sélectionnez pour filtrer",
+    allowClear: true
+});
+import 'select2/dist/css/select2.css';
+
+// event listener for each new selected year
+$('#select2_years').on("select2:select", (event) => { // TBU for each filter
+// take ALL the (un)selected year
+  let values = [];
+  $(event.currentTarget).find("option:selected").each(function(i, selected){
+    values[i] = $(selected).text();
+  });
+  // call ajax get
+  $.get({
+    url: '/harbours',
+    dataType: "script",
+    data: {year: values} // TBU for each filter
+  });
+});
+
+// event listener for each new UNselected year
+$('#select2_years').on("select2:unselect", (event) => { // TBU for each filter
+// take ALL the (un)selected year
+  let values = [];
+  $(event.currentTarget).find("option:selected").each(function(i, selected){
+    values[i] = $(selected).text();
+  });
+  // call ajax get
+  $.get({
+    url: '/harbours',
+    dataType: "script",
+    data: {year: values} // TBU for each filter
+  });
+});
+
 
 
   // console.log(event);
@@ -51,10 +98,3 @@ $('#select2_harbours').on("select2:unselect", (event) => {
   // console.log(event.params.data);
   // var harbourSelected = event.params.data.text;
   // console.log(harbourSelected); // -> bayonne  -> OK
-
-  $.get({
-    url: '/harbours',
-    dataType: "script",
-    data: {name: values}//harbourSelected}
-  });
-});

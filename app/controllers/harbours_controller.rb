@@ -4,6 +4,7 @@ class HarboursController < ApplicationController
 
 
   def index
+    # harbours
     @harbours = policy_scope(Harbour)
 
     @selected_harbours = Harbour.filter_by_harbour(params, @harbours)
@@ -31,6 +32,7 @@ class HarboursController < ApplicationController
         "features": @features
       }
 
+    # respond_to
     respond_to do |format|
       format.html
       format.js  # <-- will render `app/views/harbours/index.js.erb`
