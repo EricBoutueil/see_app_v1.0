@@ -9,7 +9,7 @@
 puts "Starting seed for DEV ENV"
 
 Movement.destroy_all
-# Harbour.destroy_all # commented until google api access denied solved
+Harbour.destroy_all # commented until google api access denied solved
 Type.destroy_all
 # User.destroy_all
 puts "DB cleaned"
@@ -20,25 +20,25 @@ example = User.find_or_create_by(
 example.password = "password"
 puts "Added user@example.com"
 
-# # Harbour
+# Harbour
 
-# puts "Creating harbours seeds"
-# ajaccio = Harbour.create!(
-#   country: "France",
-#   name: "ajaccio",
-#   address: "ajaccio"
-#   )
-# bastia = Harbour.create!(
-#   country: "France",
-#   name: "bastia",
-#   address: "bastia"
-#   )
-# bayonne = Harbour.create!(
-#   country: "France",
-#   name: "bayonne",
-#   address: "bayonne"
-#   )
-# puts "done harbours seeds"
+puts "Creating harbours seeds"
+ajaccio = Harbour.create!(
+  country: "France",
+  name: "ajaccio",
+  address: "ajaccio"
+  )
+bastia = Harbour.create!(
+  country: "France",
+  name: "bastia",
+  address: "bastia"
+  )
+bayonne = Harbour.create!(
+  country: "France",
+  name: "bayonne",
+  address: "bayonne"
+  )
+puts "done harbours seeds"
 
 # Type
 
