@@ -1,9 +1,7 @@
 // import { initMap } from '../../javascript/packs/map';
-
 // console.log("js.erb");
 
 var totalVolumeMax = 0;
-
 var mapElement = document.getElementById('map');
 
 // update value of geojson through dataset.geojson == data-geojson
@@ -12,11 +10,11 @@ mapElement.dataset.geojson = JSON.stringify(<%= @geojson.to_json.html_safe %>);
 // trigger new event mapDatasetUpdated
 
 // initMap();
-
   var map;
 
   // look for the correct element 'map' in the DOM, so need DOM charged
   if (mapElement) {
+
     // STEP 1: init map
     map = new google.maps.Map(mapElement, {
           zoom: 6,

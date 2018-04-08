@@ -1,23 +1,30 @@
 // function definitions
 
 var totalVolumeMax = 0;
+var map;
+var bounds = new google.maps.LatLngBounds();
+var mapElement = document.getElementById('map');
+var jsonparsed = JSON.parse(mapElement.dataset.geojson);
+
 
 function initMap() {
-
-  var map;
-
-  // look for the correct element 'map' in the DOM, so need DOM charged
-  var mapElement = document.getElementById('map');
-
   if (mapElement) {
     // STEP 1: init map
     map = new google.maps.Map(mapElement, {
           zoom: 6,
-          center: {lat: 43.3, lng: 5.4}
+          center: {lat:46.52863469527167, lng:2.43896484375}
+          // FR: {lat:46.52863469527167, lng:2.43896484375} // MRS: {lat: 43.3, lng: 5.4}
         });
 
+    // auto center map on markers
+    google.maps.event.addListener(map.data, 'addfeature', function(e) {
+        if (e.feature.getGeometry().getType() === 'Point') {
+          bounds.extend(e.feature.getGeometry().get());
+        }
+        map.fitBounds(bounds);
+      });
+
     // STEP 2: load GeoJson
-    var jsonparsed = JSON.parse(mapElement.dataset.geojson);
     map.data.addGeoJson(jsonparsed);
 
     // check max totvol
@@ -61,4 +68,4 @@ initMap();
 // var mapElement = document.getElementById('map');
 // eventListener dataset
 
-export { initMap, getCircle };
+// export { initMap, getCircle };
