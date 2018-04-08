@@ -1,22 +1,56 @@
 // function definitions
 
-var totalVolumeMax = 0;
-var map;
-var bounds = new google.maps.LatLngBounds();
 var mapElement = document.getElementById('map');
+var map;
+var mapStyle = [
+  {
+    "featureType": "poi",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  }
+];
+var bounds = new google.maps.LatLngBounds();
 var jsonparsed = JSON.parse(mapElement.dataset.geojson);
-
+var totalVolumeMax = 0;
 
 function initMap() {
   if (mapElement) {
     // STEP 1: init map
     map = new google.maps.Map(mapElement, {
           zoom: 6,
-          center: {lat:46.52863469527167, lng:2.43896484375}
+          center: {lat:46.52863469527167, lng:2.43896484375},
           // FR: {lat:46.52863469527167, lng:2.43896484375} // MRS: {lat: 43.3, lng: 5.4}
+          styles: mapStyle
         });
 
-    // auto center map on markers
+  };
+}
+
+
+function loadGeoJson() {
+  if (mapElement) {
+
+    // auto center map on data
     google.maps.event.addListener(map.data, 'addfeature', function(e) {
         if (e.feature.getGeometry().getType() === 'Point') {
           bounds.extend(e.feature.getGeometry().get());
@@ -35,7 +69,7 @@ function initMap() {
     });
     // console.log(totalVolumeMax)
 
-    // STEP 3: set style
+    // STEP 3: set data style
     map.data.setStyle(function(feature) {
       var totalVolume = feature.getProperty('totvol');
       return {
@@ -44,7 +78,6 @@ function initMap() {
     });
 
   };
-  // else { console.log("there is no mapElement")};
 }
 
 // note: markers ares symbols (circles)
@@ -64,8 +97,9 @@ function getCircle(totalVolume) {
 // execution
 
 initMap();
+loadGeoJson();
 
 // var mapElement = document.getElementById('map');
 // eventListener dataset
 
-// export { initMap, getCircle };
+export { loadGeoJson, getCircle };
