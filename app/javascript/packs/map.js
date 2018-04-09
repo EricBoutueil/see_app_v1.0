@@ -1,5 +1,4 @@
-// function definitions
-
+// STEP 1: init map
 var mapElement = document.getElementById('map');
 var map;
 var mapStyle = [
@@ -29,13 +28,8 @@ var mapStyle = [
     ]
   }
 ];
-var bounds = new google.maps.LatLngBounds();
-var jsonparsed = JSON.parse(mapElement.dataset.geojson);
-var totalVolumeMax = 0;
-
 function initMap() {
   if (mapElement) {
-    // STEP 1: init map
     map = new google.maps.Map(mapElement, {
           zoom: 6,
           center: {lat:46.52863469527167, lng:2.43896484375},
@@ -46,41 +40,55 @@ function initMap() {
   };
 }
 
-
+// STEP 2: load GeoJson
 function loadGeoJson() {
+  var jsonparsed = JSON.parse(mapElement.dataset.geojson);
   if (mapElement) {
 
-    // auto center map on data
+    zoom();
+
+    map.data.addGeoJson(jsonparsed);
+
+  };
+}
+
+// auto center map on data layer
+function zoom() {
+    var bounds = new google.maps.LatLngBounds();
     google.maps.event.addListener(map.data, 'addfeature', function(e) {
         if (e.feature.getGeometry().getType() === 'Point') {
           bounds.extend(e.feature.getGeometry().get());
         }
         map.fitBounds(bounds);
       });
+}
 
-    // STEP 2: load GeoJson
-    map.data.addGeoJson(jsonparsed);
+// STEP 3: set data style
+function setFeaturesStyle() {
+  if (mapElement) {
+    maxTotvol();
 
-    // check max totvol
-    map.data.forEach(function(feature) {
-        if (feature.getProperty('totvol') > totalVolumeMax) {
-          totalVolumeMax = feature.getProperty('totvol');
-        };
-    });
-    // console.log(totalVolumeMax)
-
-    // STEP 3: set data style
     map.data.setStyle(function(feature) {
       var totalVolume = feature.getProperty('totvol');
       return {
         icon: getCircle(totalVolume)
       };
     });
-
   };
 }
 
-// note: markers ares symbols (circles)
+// calculate total volume max of filtered features
+var totalVolumeMax = 0;
+function maxTotvol() {
+    map.data.forEach(function(feature) {
+        if (feature.getProperty('totvol') > totalVolumeMax) {
+          totalVolumeMax = feature.getProperty('totvol');
+        };
+    });
+    // console.log(totalVolumeMax)
+}
+
+// show proportional markers (note: markers ares symbols == circles)
 function getCircle(totalVolume) {
   return {
     path: google.maps.SymbolPath.CIRCLE,
@@ -92,14 +100,14 @@ function getCircle(totalVolume) {
   };
 }
 
-// google.maps.event.addDomListener(window, "load", initMap);
+
 
 // execution
-
 initMap();
 loadGeoJson();
+setFeaturesStyle();
 
-// var mapElement = document.getElementById('map');
+// google.maps.event.addDomListener(window, "load", initMap);
 // eventListener dataset
 
-export { loadGeoJson, getCircle };
+// export { loadGeoJson, getCircle };
